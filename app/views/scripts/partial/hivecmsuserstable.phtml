@@ -1,0 +1,41 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>User ID</th>
+			<th>Partner ID</th>
+			<th>Skin ID</th>
+			<th>Username</th>
+			<th>User name</th>
+			<th>User role</th>
+		</tr>
+	</thead>
+	
+	
+	<tbody>
+	<?php if(!empty($this->data)):?>
+		<?php foreach ($this->data as $row):?>
+			<tr>
+				<td><?php echo $row['userid'];?></td>
+				<td><?php echo !empty($row['partner_name']) ? $row['partner_name'] : "/";?></td>
+				<td><?php echo !empty($row['skinname']) ? $row['skinname'] : "/";;?></td>
+				<td><?php echo $row['username'];?></td>
+				<td><?php echo $row['name'];?></td>
+				<td><?php echo $row['role'];?></td>
+				<td><button data-edithivecmsuser data-userid="<?php echo $row['userid'];?>" class="btn btn-success">Edit user</button></td>
+			</tr>
+		<?php endforeach;?>
+	<?php else:?>
+		<tr>
+			<td colspan="6">
+				No users for selected params
+			</td>
+		</tr>
+	<?php endif;?>
+	<tr>
+		<td colspan="6">
+			<?php echo $this->render('partial/pagination.phtml');?>
+		</td>
+	</tr>
+
+	</tbody>
+</table>

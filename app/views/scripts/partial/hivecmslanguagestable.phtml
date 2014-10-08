@@ -1,0 +1,34 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Language ID</th>
+			<th>Language</th>
+			<th>Short name</th>
+		</tr>
+	</thead>
+	
+	
+	<tbody>
+	<?php if(!empty($this->langs)):?>
+		<?php foreach ($this->langs as $row):?>
+			<tr>
+				<td><?php echo $row['langid'];?></td>
+				<td><?php echo $row['lang'];?></td>
+				<td><?php echo $row['short_lang'];?></td>
+			</tr>
+		<?php endforeach;?>
+	<?php else:?>
+		<tr>
+			<td colspan="3">
+				No users for selected params
+			</td>
+		</tr>
+	<?php endif;?>
+	<tr>
+		<td colspan="3">
+			<?php echo $this->render('partial/pagination.phtml');?>
+		</td>
+	</tr>
+
+	</tbody>
+</table>

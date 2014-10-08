@@ -1,0 +1,32 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Role ID</th>
+			<th>Role</th>
+		</tr>
+	</thead>
+	
+	
+	<tbody>
+	<?php if(!empty($this->roles)):?>
+		<?php foreach ($this->roles as $row):?>
+			<tr>
+				<td><?php echo $row['roleid'];?></td>
+				<td><?php echo $row['role'];?></td>
+			</tr>
+		<?php endforeach;?>
+	<?php else:?>
+		<tr>
+			<td colspan="2">
+				No users for selected params
+			</td>
+		</tr>
+	<?php endif;?>
+	<tr>
+		<td colspan="2">
+			<?php echo $this->render('partial/pagination.phtml');?>
+		</td>
+	</tr>
+
+	</tbody>
+</table>

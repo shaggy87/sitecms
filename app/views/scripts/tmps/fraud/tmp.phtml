@@ -1,0 +1,49 @@
+<script id="modify-viewhands" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="viewhands" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                
+                                <button class="btn btn-info btn_prev"><i class="icon-previous"></i> Previous</button>
+                                <button class="btn btn-info btn_nxt pull-right"> Next <i class="icon-next"></i></button>
+                                <div class="history"></div>
+                        
+                                <div class="handdata">{{{Data}}}</div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+<script id="reject-transaction" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="transaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+				<div class="modal-body">
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-2 control-label" for="reasonwhy">Reason:</label>
+                                    <div class="col-sm-6">
+                                            <textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+                                    </div>
+					</div>
+				</div>
+				<div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-reject >Apply</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>

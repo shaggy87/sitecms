@@ -1,0 +1,710 @@
+<script id="modify-createmanualbonus" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createmanualbonus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<label class="col-sm-7 control-label" for="bamount">Bonus Amount:</label>
+						<div class="col-sm-4">
+							<input type="text" name="bamount" class="form-control " id="bamount" placeholder="">
+						</div>
+						<div class="col-sm-1">
+							EUR
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-sm-7 control-label" for="btamount">Amount of Tokens:</label>
+						<div class="col-sm-4">
+							<input type="text" name="btamount" class="form-control " id="btamount" placeholder="">
+						</div>
+						<div class="col-sm-1">
+							EUR
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-sm-7 control-label" for="validity">Bonus validity in days (0 = default):</label>
+						<div class="col-sm-4">
+							<input type="text" name="validity" class="form-control " id="validity" placeholder="">
+						</div>
+						<div class="col-sm-1">
+							DAYS
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div>
+							<label>
+						 		Bonus Type:
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" data-action="true" name="bonus-type" id="optionsRadios1" value="1" checked>
+								Pending
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" data-action="false" name="bonus-type" id="optionsRadios2" value="2">
+								Upfront
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div>
+							<label>
+						 		Return Rate:
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="returnrate" id="optionsios1" value="2" >
+								100.00%
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" name="returnrate" id="optios2" value="4">
+								50.00%
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="returnrate" id="optiodios1" value="6" >
+								33.33%
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="returnrate" id="opos1" value="8" >
+								25.00%
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="returnrate" id="optios1" value="10" checked>
+								20.00
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="returnrate" id="optionsRadi" value="12" >
+								16.67%
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="returnrate" id="returnrate-none" value="0" disabled>
+								None
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-4 control-label" for="comment">Comment (required):</label>
+						<div class="col-sm-7">
+							<textarea type="text" name="comment" class="form-control " id="comment" placeholder="comment..."></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-creditbonussubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-createtourneyticket" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createtourneyticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-6 control-label" for="tname">Ticket Name:</label>
+							<div class="col-sm-6">
+								<input type="text" name="tname" class="form-control " id="tname" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-8 control-label" for="tvalue">Value:</label>
+							<div class="col-sm-4">
+								<input type="text" name="tvalue" class="form-control " id="tvalue" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<div class="row">	
+							<label class="col-sm-6 control-label" for="ttarget">Target Trny:</label>
+							<div class="col-sm-6">
+								<select name="ttarget" class="form-control" id="ttarget">
+									<?php foreach ($this->ticketTrny as $key => $row):?>
+										<?php if ($row['tablenote'] != ""):?>
+											<option value='R<?php echo $row["tablenote"];?>'>M - <?php echo getTableNameString($row['tablename'], 0);?>
+										<?php else:?>
+											<option value='S<?php echo $row["tableid"];?>'>S - <?php echo getTableNameString($row['tablename'], 0);?>
+										<?php endif;?>
+									<?php endforeach;?>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">	
+							<div class="checkbox col-sm-6">
+								<label>
+									<b>Expire in (days):</b>
+									<input type="checkbox" value="" name="is_expire_in" >
+								</label>
+							</div>
+							<div class="col-sm-6">
+								<input type="text" name="expire_in" disabled class="form-control " id="expire_in" placeholder="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<div class="checkbox col-sm-6">
+								<label>
+									<b>Expire at:</b>
+									<input type="checkbox" value="" name="is_expire_at" >
+								</label>
+							</div>
+							<div class="col-sm-6">
+								<input type="text" name="expire_at" disabled class="form-control datepicker-to" id="expire_at" placeholder="dd-mm-yyyy">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="checkbox">
+							<label>
+								<b>Auto-register player</b>
+								<input type="checkbox" value="" name="autoreg" >
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-tourneyticketsubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-credittrnyticket" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="credittrnyticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<label class="col-sm-5 control-label" for="ticketid">Ticket:</label>
+						<div class="col-sm-6">
+							<select name="ticketid" class="form-control" id="ticketid">
+								<?php foreach ($this->trnyTickets as $key => $row):?>
+									<option value='<?php echo $row["id"];?>'><?php echo $row["name"];?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-sm-5 control-label" for="comment">Comment (required):</label>
+						<div class="col-sm-6">
+							<input type="text" name="comment" class="form-control " id="comment" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-credittrnyticketsubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-createbonuscodes" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createbonuscodes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-6 control-label" for="expiration">Expiration:</label>
+							<div class="col-sm-6">
+								<input type="text" name="expiration" class="form-control datepicker" id="expiration" placeholder="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-5 control-label">Choose bonus:</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<label class="col-sm-5 control-label" for="code">Code:</label>
+							<div class="col-sm-6">
+								<input type="text" name="code" class="form-control " id="code" placeholder="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<label class="col-sm-5 control-label" for="usesperplayer">Number of uses per player:</label>
+							<div class="col-sm-6">
+								<input type="text" name="usesperplayer" class="form-control " id="usesperplayer" placeholder="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<label class="col-sm-5 control-label" for="totaluses">Total number of uses (0 = unlimited):</label>
+							<div class="col-sm-6">
+								<input type="text" name="totaluses" class="form-control " id="totaluses" placeholder="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<label class="col-sm-5 control-label" for="btamount">Type:</label>
+							<div class="col-sm-6">
+								<input type="text" name="btamount" class="form-control " id="btamount" placeholder="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-5 control-label" for="player">Player:</label>
+							<div class="col-sm-6">
+								<input type="text" name="player" class="form-control " id="player" placeholder="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-createbonuscodessubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-createbonus" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createbonus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					
+					<div class="form-group">
+						<label for="skinid">Select skin:</label>
+						<select id="skinid"class="form-control" name="skinid">
+							<?php foreach ($this->skinsSelect as $key => $value):?>
+								<option value="<?php echo $value['skinid'];?>"><?php echo $value['name'];?></option>
+							<?php endforeach;?>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="affilid">Select affiliate:</label>
+						<select id="affilid" class="form-control" name="affilid">
+							<option value="-1" selected="selected">All</option>
+							<?php foreach ($this->affiliateSelect as $key => $value):?>
+								<option value="<?php echo $value['affilid'];?>"><?php echo $value['name'];?></option>
+							<?php endforeach;?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="deptype">Select affiliate:</label>
+						<select class="form-control" name='deptype' id='deptype'>
+							<option value='1'>First deposit bonus</option>
+							<option value='2'>Reload deposit bonus</option>
+							<option value='4' selected>Referred bonus</option>
+							<option value='5' selected>Referrer bonus</option>
+							<option value='7' selected>Bonuscode related</option>
+							<option value='8'>Manual bonus</option>
+							<option value='9'>First login bonus</option>
+						</select>
+					</div>
+							
+					<div class="form-group">
+						<div class="row">
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-4">
+								<label>Percent value (%)</label>
+							</div>
+							
+							<div class="col-sm-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input data-checkval="percent" name="valuecheck" type="radio" value="percent" checked>
+									</span>
+									<input name="percent" type="text" class="form-control" value="20" >
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-4">
+								<label>Fixed value (€)</label>
+							</div>
+							
+							<div class="col-sm-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input data-checkval="fixed" name="valuecheck" type="radio" value="fixed">
+									</span>
+									<input name="fixed" type="text" class="form-control" value="5" disabled>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>Bonus release increment (0 = skin default)</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="0" name="bonusrelase">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>Bonus validity in days (0 = skin default)</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="0" name="bonusvalidity">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">	
+							<div class="col-sm-6 ">
+								<label>
+									<input type="radio" name="bonusescheck" id="optionsRadios1" value="bonusrelase" checked>
+									Pending bonus
+								</label>
+							</div>
+							<div class="col-sm-6">
+								<label>
+									<input type="radio" name="bonusescheck" id="optionsRadios2" value="bonusvalidity">
+									Upfront bonus
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>Minimum Deposit Amount (€):</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input type="text" class="form-control" disabled  value="50" name="minbonus">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>Maximum Bonus Amount (€):</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input type="text" class="form-control" value="500" name="maxbonus">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>Tokens to award:</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input name="tokens" type="text" class="form-control" value="0">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>Return Rate (in %):</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input name="fpps" type="text" class="form-control" value="20">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>From date:</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input name="fromdate" type="text" class="form-control" disabled value="<?php echo $this->dateFrom ? $this->dateFrom : ''?>">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<label>To date:</label>
+							</div>
+							
+							<div class="col-sm-4">
+								<input name="todate" type="text" class="form-control" disabled value="<?php echo $this->dateTo ? $this->dateTo : ''?>">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-createbonussubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-hhj" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="hhj" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-4">
+								<label for="type">Select type:</label>
+							</div>
+							
+							<div class="col-sm-8">
+								<select class="form-control" name='type' id='type'>
+									<option {{^Data.type}}selected{{/Data.type}} value='0'>HHJ</option>
+									<option {{#Data.type}}selected{{/Data.type}} value='1'>Players' Pool</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-4">
+								<label for="minhand">Min. hand:</label>
+							</div>
+							
+							<div class="col-sm-8">
+								<select class="form-control" name='minhand' id='minhand'>
+									<?php foreach($this->hhj_hands as $k=>$val):?>
+										<option value='<?php echo $k;?>'><?php echo $val;?></option>
+									<?php endforeach;?>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-4">
+								<label for="type">Text:</label>
+							</div>
+							
+							<div class="col-sm-8">	
+								<textarea class="form-control" name="hhjtext">{{Data.text}}</textarea>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Starting amount (cents):</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<input name="hhjamount" type="text" class="form-control" value="{{Data.start_amount}}">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Minimum rake (cents):</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<input name="hhjrakemin" type="text" class="form-control" value="{{Data.rakemin}}">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-12">
+								<label>Type of amount from rake:</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">	
+							<div class="col-sm-6 ">
+								<label>
+									<input type="radio" name="percent" id="optionsRadios1" value="percent" {{Data.pvperc}}>
+									Percent
+								</label>
+							</div>
+							<div class="col-sm-6">
+								<label>
+									<input type="radio" name="percent" id="optionsRadios2" value="fixed" {{Data.pvfixed}}>
+									Fixed
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Amount from rake (cents or %)</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<input name="percval" type="text" class="form-control" value="{{Data.pv}}">
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="col-sm-6">
+									<label>Time</label>
+								</div>
+								
+								<div class="col-sm-6">
+									<input name="hhjtime" type="text" class="form-control" value="{{Data.tm}}">
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<select class="form-control" name="ttype">
+									<option value='0' {{^Data.minutes}}selected{{/Data.minutes}}>Minutes</option>
+									<option value='32' {{#Data.hours}}selected{{/Data.hours}}>Hours</option>
+									<option value='2' {{#Data.days}}selected{{/Data.days}}>Days</option>
+									<option value='4' {{#Data.weeks}}selected{{/Data.weeks}}>Weeks</option>
+									<option value='8' {{#Data.months}}selected{{/Data.months}}>Months</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-12">
+								<label>
+									Valid only on Omaha PL
+									<input type="checkbox" value="" name="only_omaha"
+									{{#Data.only_omaha}}
+									checked
+									{{/Data.only_omaha}} >
+								</label>
+							</div><!-- /.col-lg-6 -->
+						</div>
+					</div>
+						
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-hhjsubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>

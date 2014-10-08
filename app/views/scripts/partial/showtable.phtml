@@ -1,0 +1,66 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><a data-sort="extern_username" href="#">Username<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="nickname" href="#">Nickame<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="skinname" href="#">Skin<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="staked" href="#">Staked<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="rake" href="#">Player Rake<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="profit" href="#">Profit<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="nrhands" href="#">Hand Count<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="nrsessions" href="#">No. Of Sessions<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="sessiontime" href="#">Session Time<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="nrsessions" href="#">IPs<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="sessiontime" href="#">MACs<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php if(!empty($this->data)):?>
+			<?php foreach ($this->data as $k => $row):?>
+				<tr>
+					<td><a href="<?php echo $this->baseUrl();?>/players/playerdata/id/<?php echo $row['uid'];?>"><?php echo !empty($row['extern_username']) ? $row['extern_username'] : "n/a";?></a></td>
+					<td><a href="<?php echo $this->baseUrl();?>/players/playerdata/id/<?php echo $row['uid'];?>"><?php echo $row['nickname'];?></a></td>
+					<td><?php echo !empty($row['skinname']) ? $row['skinname'] : "&lt;none&gt;";?></td>
+					<td><?php echo $this->getMoneyStr3($row['staked'], 1);?></td>
+					<td><?php echo $this->getMoneyStr3($row['rake'], 1);?></td>
+					<td><?php echo $this->getMoneyStr3($row['profit'], 1);?></td>
+					<td><?php echo $row['nrhands'];?></td>
+					<td><?php echo $row['nrsessions'];?></td>
+					<td><?php echo $this->FormatSessionTime($row['sessiontime']);?></td>
+					<td><?php echo $row["ip"];?></td>
+					<td>
+						<?php
+							if(!empty($row["macs"])) {
+								foreach ($row["macs"] as $key => $mac) {
+									echo "<a href=\"{$this->baseUrl()}/games/addressesfrommac/mac/{$mac}\">{$this->GetFmtMac($mac)}</br>";
+								}
+							}
+						?>
+					</td>
+				</tr>
+			<?php endforeach;?>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th><?php echo $this->GetTotal($this->data, 'staked');?></th>
+			<th><?php echo $this->GetTotal($this->data, 'rake');?></th>
+			<th><?php echo $this->GetTotal($this->data, 'profit');?></th>
+			<th><?php echo $this->GetTotal($this->data, 'nrhands', false);?></th>
+			<th><?php echo $this->GetTotal($this->data, 'nrsessions', false);?></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<?php else:?>
+			<tr>
+				<td colspan="11">No results for selected params</td>
+			</tr>	
+		<?php endif;?>
+		<tr>
+			<td colspan="11">
+				<?php echo $this->render('partial/pagination.phtml');?>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,52 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Promotion Order</th>
+			<th>Promotion Name</th>
+			<th>Promotion status</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody id="sortable">
+		<?php if(!empty($this->promotions)):?>
+			<?php foreach ($this->promotions as $k=>$row):?>
+				<tr <?php if($row["status"]):?>data-sort<?php endif;?> data-promid="<?php echo $row["promotion_id"];?>">
+					<td><?php echo $row["status"] ? $k+1 : "n/a";?></td>
+					<td><?php echo $row["promotion_name"];?></td>
+					<td><?php echo $row["status"] != 1 ? ($row["status"] != 0 ? "Deleted" : "Not Active") : "Active";?></td>
+					<td><button data-addpromotionlang  data-promotionid="<?php echo $row["promotion_id"];?>" class="btn btn-success">Add/Edit language</button></td>
+					<td><button data-editpromotion data-promstatus="<?php echo $row["status"];?>" data-promname="<?php echo $row["promotion_name"];?>" data-promotionid="<?php echo $row["promotion_id"];?>" class="btn btn-success">Edit Promotion</button></td>
+				</tr>
+			<?php endforeach;?>
+		<?php else:?>
+			<tr>
+				<td colspan="5">No Promotions for current client's skin</td>
+			</tr>
+		<?php endif;?>
+	</tbody>
+</table>
+
+<script>
+	$(function() {
+		$( "#sortable" ).sortable({
+			placeholder: "ui-state-highlight",
+			items: "> tr[data-sort]",
+			update: function(e) {
+				var data = [];
+				$("#sortable tr[data-sort]").each(function(k, val){
+					data[k] =  $(val).attr("data-promid");
+				});
+				
+				PBO.ajax("sortpromotions", {data: data}, function(response){
+					if(response.status == 1){
+                        PBO.error_display(response.error, "Error:");
+                    } else {
+                        PBO.info_display(response.data, "Success");
+                        $("[data-filter]").trigger("submit");
+                    }
+				});
+			}
+		});
+	});
+</script>

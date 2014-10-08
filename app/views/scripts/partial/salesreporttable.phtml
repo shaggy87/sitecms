@@ -1,0 +1,41 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th><a data-sort="id" href="<?php echo $this->ToggleOrder('id')?>">id<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="skin" href="<?php echo $this->ToggleOrder('skin')?>">skin<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="timestamp" href="<?php echo $this->ToggleOrder('timestamp')?>">timestamp<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="username" href="<?php echo $this->ToggleOrder('username')?>">username<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="userrole" href="<?php echo $this->ToggleOrder('userrole')?>">userrole<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_title" href="<?php echo $this->ToggleOrder('product_title')?>">product title<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_price" href="<?php echo $this->ToggleOrder('product_price')?>">product price<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_category" href="<?php echo $this->ToggleOrder('product_category')?>">product category<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="quantity" href="<?php echo $this->ToggleOrder('quantity')?>">quantity<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="bonus_euro_amount" href="<?php echo $this->ToggleOrder('bonus_euro_amount')?>">bonus euro amount<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+		</tr>
+	</thead>
+	<tbody>
+	
+	
+	<?php foreach ($this->data as $row):?>
+		<tr>
+			<td><?php echo $row['id']?></td>
+			<td><?php echo $row['skin']?></td>
+			<td><?php echo $row['timestamp']?></td>
+			<td><?php echo $row['username']?></td>
+			<td><?php echo $row['userrole']?></td>
+			<td><?php echo $row['product_title']?></td>
+			<td class="text-right"><?php echo $row['product_price']?></td>
+			<td><?php echo $row['product_category']?></td>
+			<td class="text-right"><?php echo $row['quantity']?></td>
+			<td class="text-right"><?php echo $row['bonus_euro_amount']?></td>
+		</tr>
+	<?php endforeach;?>
+	<tr>
+		<td colspan="10">
+			<?php echo $this->render('partial/pagination.phtml');?>
+		</td>
+	</tr>
+	
+
+	</tbody>
+</table>

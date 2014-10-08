@@ -1,0 +1,605 @@
+<script id="modify-playmoney" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="playmoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="radio-inline">
+							<label>
+						 		Action:
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="what" value="add" checked>
+								Add
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" name="what" value="extract">
+								Extract
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="type">Type:</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="modifytype">
+								<?php foreach($this->type as $key=>$row):?>
+									<option value="<?php echo $row['val'];?>"><?php echo $row['name'];?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="newmoney">Amount:</label>
+						<div class="col-sm-6">
+							<input type="text" name="newmoney" class="form-control " id="newmoney" placeholder="amount to add/extract">
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="reasonwhy">Reason:</label>
+						<div class="col-sm-6">
+							<textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+						</div>
+					</div>
+					
+					<input type="hidden" name="userid" value="<?php echo $this->playerData['user_profile']["userid"];?>">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" data-saveplaymoney class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-realmoney" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="realmoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="radio-inline">
+							<label>
+						 		Action:
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="what" value="add" checked>
+								Add
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" name="what" value="extract">
+								Extract
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="type">Type:</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="modifytype">
+								<?php foreach($this->type as $key=>$row):?>
+									<option value="<?php echo $row['val'];?>"><?php echo $row['name'];?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="newmoney">Amount:</label>
+						<div class="col-sm-6">
+							<input type="text" name="newmoney" class="form-control " id="newmoney" placeholder="amount to add/extract">
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="reasonwhy">Reason:</label>
+						<div class="col-sm-6">
+							<textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+						</div>
+					</div>
+					
+					<input type="hidden" name="userid" value="<?php echo $this->playerData['user_profile']["userid"];?>">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" data-saverealmoney class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-tournamenttokens" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="tournamenttokens" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="radio-inline">
+							<label>
+						 		Action:
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="what" value="add" checked>
+								Add
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" name="what" value="extract">
+								Extract
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="type">Type:</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="modifytype">
+								<?php foreach($this->type as $key=>$row):?>
+									<option value="<?php echo $row['val'];?>"><?php echo $row['name'];?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="newmoney">Amount:</label>
+						<div class="col-sm-6">
+							<input type="text" name="newmoney" class="form-control " id="newmoney" placeholder="amount to add/extract">
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="reasonwhy">Reason:</label>
+						<div class="col-sm-6">
+							<textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+						</div>
+					</div>
+					
+					<input type="hidden" name="userid" value="<?php echo $this->playerData['user_profile']["userid"];?>">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" data-savetmoney class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-fpps" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="fpps" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="radio-inline">
+							<label>
+						 		Action:
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+						 		<input type="radio" name="what" value="add" checked>
+								Add
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label>
+								<input type="radio" name="what" value="extract">
+								Extract
+							</label>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="type">Type:</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="modifytype">
+								<?php foreach($this->type as $key=>$row):?>
+									<option value="<?php echo $row['val'];?>"><?php echo $row['name'];?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="newmoney">Amount:</label>
+						<div class="col-sm-6">
+							<input type="text" name="newmoney" class="form-control " id="newmoney" placeholder="amount to add/extract">
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="reasonwhy">Reason:</label>
+						<div class="col-sm-6">
+							<textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+						</div>
+					</div>
+					
+					<input type="hidden" name="userid" value="<?php echo $this->playerData['user_profile']["userid"];?>">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" data-savefpps class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-playerrights" type="text/template">
+	<!-- Modal -->
+        <form id="player-rights">
+	<div class="modal fade" id="playerrights" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}<span class="data"></span></h4>
+				</div>
+				<div class="modal-body">
+					<?php if($this->GetUserRWRights(array("wadmin0"))):?>
+						<div class="checkbox">
+							<label>
+								User is admin
+								<input name="admin" type="checkbox" value="" <?php echo $this->Adm0Only($this->playerData['user_profile']['rights'] & 64) != 0 ? "checked" : "";?> >
+							</label>
+						</div>
+					<?php endif;?>
+					
+					<?php if($this->GetUserRWRights(array("wadmin"))):?>
+						<div class="checkbox">
+							<label>
+								User is host
+								<input name="host" type="checkbox" value="" <?php echo $this->Adm0Only($this->playerData['user_profile']['rights'] & 32) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+					<?php endif;?>
+					
+					<?php if($this->GetUserRWRights(array("wadmin", "wadmin0"))):?>
+						<div class="checkbox">
+							<label>
+								User is prop
+								<input name="propp" type="checkbox" value="" <?php echo $this->Adm0Only($this->playerData['user_profile']['rights'] & 16) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								Account blocked
+								<input name="blocked" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 128) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+					
+						<div class="checkbox">
+							<label>
+								Image upload blocked
+								<input name="cantupload" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 2048) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+					
+						<div class="checkbox">
+							<label>
+								Account verified
+								<input name="verified" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 4096) != 0 ? "checked" : "";?>  disabled="disabled">
+							</label>
+						</div>
+					
+						<div class="checkbox">
+							<label>
+								Account validated
+								<input name="validated" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 0x200000) != 0 ? "checked" : "";?> disabled="disabled">
+							</label>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								Excluded from League
+								<input name="noleague" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 0x80000) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								Has no VPP/FPP/Bonuses
+								<input name="nopromo" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 0x00800000) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+                                        
+                                                <div class="checkbox">
+							<label>
+								Trusted Player
+								<input name="flagged" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 0x02000000) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+						
+						<div style="display: table;clear: both;width: 100%;">
+							<div class="checkbox col-sm-4">
+								<label>
+									Chat blocked
+									<input name="cantchat" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 256) != 0 ? "checked" : "";?>>
+								</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<select class="form-control" name="chattime" <?php echo ($this->playerData['user_profile']['rights'] & 256) == 0 ? "disabled" : "";?>>
+									<?php echo ($this->playerData['user_profile']['rights'] & 256) == 0 ? "" : "<option value='unchanged' selected>Unchanged</option>";?>
+									<option value='86400'>1 day</option>
+									<option value='604800'>1 week</option>
+									<option value='2592000'>1 month</option>
+									<option value='0'>Permanently</option>
+								</select>
+							</div>
+						</div>
+					<?php endif;?>
+					
+					<?php if($this->GetUserRWRights(array("wadmin0"))):?>
+						<div class="checkbox">
+							<label>
+								Create table
+								<input name="createtable" type="checkbox" value="" <?php echo ($this->playerData['user_profile']['rights'] & 2) != 0 ? "checked" : "";?>>
+							</label>
+						</div>
+					<?php endif;?>
+					<div class="form-group clearfix">
+						<label class="col-sm-2 control-label" for="reasonwhy">Reason:</label>
+						<div class="col-sm-6">
+							<textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="userid" value="<?php echo $this->playerData['user_profile']["userid"];?>">
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" data-saverights class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</form>
+</script>
+
+<script id="modify-rakeback" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="rakeback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<label class="col-sm-4 control-label" for="rakeback-amount">New rakeback:</label>
+						<div class="col-sm-6">
+							<input type="text" name="rakeback-amount" class="form-control " id="rakeback-amount" placeholder="new rakeback" value="<?php echo $this->playerData['rkbk']['rbpercent'];?>">
+							<input type="hidden" name="rakeback-userid" value="<?php echo $this->playerData['user_profile']['userid'];?>" >
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-rakebacksubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-viplevel" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="viplevel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<label class="col-sm-4 control-label" for="viplevel-new">New VIP level:</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="viplevel-new">
+								<?php foreach ($this->vipLevel as $key => $value):?>
+									<?php if (!empty($value['level']) && !empty($value['name'])):?>
+										<option value="<?php echo $value['level'];?>"><?php echo $value['level']." - ".$value['name'];?></option>
+									<?php endif;?>
+								<?php endforeach;?>
+							</select>
+							<input type="hidden" name="viplevel-userid" value="<?php echo $this->playerData['user_profile']['userid'];?>" >
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-sm-4 control-label" for="viplevel-retained">New retained VIP level:</label>
+						<div class="col-sm-6">
+							<select class="form-control" name="viplevel-retained">
+								<option value="0" selected="selected">0 - None</option>
+								<?php foreach ($this->vipLevel as $key => $value):?>
+									<option value="<?php echo $value['level'];?>"><?php echo $value['level']." - ".$value['name'];?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-sm-4 control-label" for="viplevel-amount">Reason:</label>
+						<div class="col-sm-6">
+							<textarea type="text" name="viplevel-reason" class="form-control" id="viplevel-reason" placeholder="reason"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-viplevelsubmit type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-limits" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="limits" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<label class="col-sm-3 control-label">Limit type</label>
+						<label class="col-sm-3 control-label">Daily limit</label>
+						<label class="col-sm-3 control-label">Weekly limit</label>
+						<label class="col-sm-3  control-label">Monthly limit</label>
+					</div>
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-3 control-label">WAGER - €</label>
+							<div class="col-sm-3">
+								<input type="text" name="w_daily" class="form-control" id="w_daily" placeholder="unlimited" value="{{StaticData.w_daily}}">
+							</div>
+							<div class="col-sm-3">
+								<input type="text" name="w_weekly" class="form-control" id="w_weekly" placeholder="unlimited" value="{{StaticData.w_weekly}}">
+							</div>
+							<div class="col-sm-3">
+								<input type="text" name="w_monthly" class="form-control" id="w_monthly" placeholder="unlimited" value="{{StaticData.w_monthly}}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<button data-limitssubmitwager type="button" class="btn btn-primary">Set wager limits</button>
+							</div>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<div class="row">
+							<label class="col-sm-3 control-label">TIME - Hour(s)</label>
+							<div class="col-sm-3">
+								<input type="text" name="t_daily" class="form-control" id="t_daily" placeholder="unlimited" value="{{StaticData.t_daily}}">
+							</div>
+							<div class="col-sm-3">
+								<input type="text" name="t_weekly" class="form-control" id="t_weekly" placeholder="unlimited" value="{{StaticData.t_weekly}}">
+							</div>
+							<div class="col-sm-3">
+								<input type="text" name="t_monthly" class="form-control" id="t_monthly" placeholder="unlimited" value="{{StaticData.t_monthly}}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<button data-limitssubmittime type="button" class="btn btn-primary">Set time limits</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="pull-left">Note: set the limits to 0 for unlimited.</div>
+					<input type="hidden" name="limits-userid" value="<?php echo $this->playerData['user_profile']['userid'];?>" >
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-viewincidents" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="viewincidents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Start</th>
+								<th>Player</th>
+								<th>Message</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{{Data}}}
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+<script id="modify-nickname" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="nickname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="form-group clearfix">
+						<label class="col-sm-5 control-label" for="nickname-force">Force to change Nickname:</label>
+						<div class="col-sm-8">
+							<input type="checkbox" name="force" class="" id="force" value="1"> <br/> This action Force Player to initiate new Nickname for <b>Next Login</b>
+							<input type="hidden" name="userid" value="<?php echo $this->playerData['user_profile']['userid'];?>" >
+						</div>
+					</div>
+                                <div class="form-group clearfix">
+						<label class="col-sm-5 control-label" for="nickname-reasonwhy">Reason:</label>
+						<div class="col-sm-8">
+							<textarea type="text" name="reasonwhy" class="form-control" id="reasonwhy" placeholder="reason"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-savenickname type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>

@@ -1,0 +1,406 @@
+<script id="modify-createnewchtmsg" type="text/template">
+    <!-- Modal -->
+    <div class="modal fade" id="createnewchtmsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+							<label>Auto chat message text:</label>
+                            <textarea class="form-control" name="descriptiond"></textarea>
+                        </div>
+                    </div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<?php echo $this->render('dropdowns/skinselect.phtml')?>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<label>From date:</label>
+							<input type="text" name="fromdate" class="form-control datepicker-from" />
+						</div>
+						<div class="col-sm-6">
+							<label>To date:</label>
+							<input type="text" name="todate" class="form-control datepicker-to" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Frequency:</label>
+							<select class="form-control" name="freqd">
+								<option value=5>5 minutes</option>
+								<option value=15>15 minutes</option>
+								<option value=30>30 minutes</option>
+								<option value=60>1 hour</option>
+								<option value=120>2 hours</option>
+								<option value=240>4 hours</option>
+								<option value=480>8 hours</option>
+								<option value=720>12 hours</option>
+								<option value=1440>Daily</option>
+								<option value=10080>Weekly</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>
+								<b>Enabled:</b>
+								<input type="checkbox" value="" name="enabled" >
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							Note: available tags in this template: , {supportemail}
+						</div>
+					</div>
+                </div>
+                <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button data-savechmsgsubmit type="button" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="modify-editchatmsg" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="editchatmsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Auto chat message text:</label>
+							<textarea class="form-control" name="descriptiond">{{StaticData.descriptiond}}</textarea>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<?php echo $this->render('dropdowns/skinselect.phtml')?>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<label>From date:</label>
+							<input type="text" name="fromdate" class="form-control datepicker-from" value="{{StaticData.fromdate}}"/>
+						</div>
+						<div class="col-sm-6">
+							<label>To date:</label>
+							<input type="text" name="todate" class="form-control datepicker-to" value="{{StaticData.todate}}" />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Frequency:</label>
+							<select class="form-control" name="freqd">
+								<option value=5>5 minutes</option>
+								<option value=15>15 minutes</option>
+								<option value=30>30 minutes</option>
+								<option value=60>1 hour</option>
+								<option value=120>2 hours</option>
+								<option value=240>4 hours</option>
+								<option value=480>8 hours</option>
+								<option value=720>12 hours</option>
+								<option value=1440>Daily</option>
+								<option value=10080>Weekly</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>
+								<b>Enabled:</b>
+								<input type="checkbox" value="" name="enabled"
+								{{#StaticData.enabled}}
+									checked
+								{{/StaticData.enabled}} >
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							Note: available tags in this template: , {supportemail}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="chatmsgid" value="{{StaticData.chatmessageid}}" />
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-savechmsgsubmit type="button" class="btn btn-success">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-editchatmsglang" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="editchatmsglang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							edit
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-savechmsgsubmit type="button" class="btn btn-success">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-addnewmsg" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="addnewmsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Auto chat message text:</label>
+							<textarea class="form-control" name="descriptiond"></textarea>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<br>
+							<label>Language :</label>
+							<select id="langidd" name="langidd">
+								<?php foreach (Zend_Registry::get("langs_long") as $id => $laguage ):?>
+									<option value="<?php echo $id;?>"> <?php echo $laguage;?> </option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							Note: available tags in this template: , {supportemail}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-saveaddnewmsgsubmit type="button" class="btn btn-success">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-editlangmsg" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="editlangmsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Auto chat message text:</label>
+							<textarea class="form-control" name="descriptiond"></textarea>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<br>
+							<label>Language :</label>
+							<select id="langidd" name="langidd">
+								<?php foreach (Zend_Registry::get("langs_long") as $id => $laguage ):?>
+									<option value="<?php echo $id;?>"> <?php echo $laguage;?> </option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							Note: available tags in this template: , {supportemail}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-saveeditmsgsubmit type="button" class="btn btn-success">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-viewemailtemplates" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="viewemailtemplates" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<label data-temtype></label>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<label data-langid></label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Template text:</label>
+							<textarea class="form-control" name="templatetext"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							Note: available tags in this template: {skinname}, {supportemail}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-editemailtemplates" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="editemailtemplates" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<label data-temtype></label>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<label data-langid></label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Template text:</label>
+							<textarea class="form-control" name="templatetext"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							Note: available tags in this template: {skinname}, {supportemail}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-saveeditedemailtemplate type="button" class="btn btn-success">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-createemailtemplate" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createemailtemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<?php echo $this->render('dropdowns/emailtemplatetypeselect.phtml')?>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<?php echo $this->render('dropdowns/skinselect.phtml')?>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<?php echo $this->render('dropdowns/languageselect.phtml')?>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<div class="row">
+						<div class="col-sm-12">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							<button
+								data-editemailtemplates
+								data-emailid="1"
+								data-templatename="<?php echo $this->GetTemplateName(1);?>"
+								data-skinid="0"
+								data-langid="1"
+								data-content=""
+								data-externcall=""
+								class="btn btn-info">Create
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>

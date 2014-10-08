@@ -1,0 +1,253 @@
+<script id="modify-addlevel" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="addlevel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<div class="clearfix">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="sb">SB:</label>
+								<input type="text" name="sb" class="form-control " id="sb" placeholder="">
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label" for="ante">Ante:</label>
+								<input type="text" name="ante" class="form-control " id="ante" placeholder="">
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label" for="stake">Stake:</label>
+								<input type="text" name="stake" class="form-control " id="stake" placeholder="">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="bb">BB:</label>
+								<input type="text" name="bb" class="form-control " id="bb" placeholder="">
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label" for="bringin">Bringin:</label>
+								<input type="text" name="bringin" class="form-control " id="bringin" placeholder="">
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label" for="bigstake">Bigstake:</label>
+								<input type="text" name="bigstake" class="form-control " id="bigstake" placeholder="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button data-addnewlevel type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-viewlevels" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="viewlevels" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Level</th>
+								<th>SB</th>
+								<th>BB</th>
+								<th>Ante</th>
+								<th>Bringin</th>
+								<th>Stake</th>
+								<th>Bigstake</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#Data}}
+								<tr>
+									<td>{{level}}</td>
+									<td>{{sb}}</td>
+									<td>{{bb}}</td>
+									<td>{{ante}}</td>
+									<td>{{bringin}}</td>
+									<td>{{stake}}</td>
+									<td>{{bigstake}}</td>
+								</tr>
+							{{/Data}}
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-viewprizes" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="viewprizes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-viewprizes">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<table class="table">
+						<thead>
+							<tr>
+								{{#Data.header}}
+									<th>{{.}}</th>
+								{{/Data.header}}
+							</tr>
+						</thead>
+						<tbody>
+							{{#Data.body}}
+								<tr>
+									{{#.}}
+										<td>{{{.}}}</td>
+									{{/.}}
+								</tr>
+							{{/Data.body}}
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-createspecialprize" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createspecialprize" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<table>
+						<thead>
+							<tr>
+								<th>Place</th>
+								<th>Description</th>
+								<th>Amount</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody class="createprizes">
+							<tr data-remove="1">
+								<td class="col-sm-2" data-place="1">1.</td>
+								<td class="col-sm-4"><input type="text" name="description" class="form-control "></td>
+								<td class="col-sm-4"><input type="text" name="amount" class="form-control "></td>
+								<td class="col-sm-2"></td>
+							</tr>
+						</tbody>
+					</table>
+					<button type="button" data-addplace class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button data-proccedcreatingprize type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>
+
+<script id="modify-createtourneyprizes" type="text/template">
+	<!-- Modal -->
+	<div class="modal fade" id="createtourneyprizes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog createtourneyprizes">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+				</div>
+		
+				<div class="modal-body">
+					<table class="">
+						<thead>
+							<tr>
+								<th class="col-sm-1" colspan="1"><label>Description: </label></th>
+								<th class="col-sm-6" colspan="6"><input type="text" name="description" class="form-control " value=""></th>
+							</tr>
+							<tr>
+								<th class="col-sm-2">Placed:</th>
+								<td class="col-sm-3"><input type="text" disabled name="placefrom" class="form-control " value="1"></td>
+								<th class="col-sm-1">[To: </th>
+								<td class="col-sm-3"><input type="text" name="placeto" class="form-control "></td>
+								<th class="col-sm-1">]</th>
+								<th class="col-sm-1"><button type="button" data-addplace class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></button></th>
+								<th class="col-sm-1"><button type="button" data-addplacedone class="btn btn-success pull-right">Done</button></th>
+							</tr>
+							<tr>
+								<th class="col-sm-2">Players from:</th>
+								<td class="col-sm-3"><input type="text" disabled name="playersfrom" class="form-control " value="2"></td>
+								<th class="col-sm-1">To: </th>
+								<td class="col-sm-3"><input type="text" disabled name="playersto" class="form-control "></td>
+								<th class="col-sm-1"></th>
+								<th class="col-sm-1"><button type="button" disabled data-addplayerft class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></button></th>
+								<th class="col-sm-1"></th>
+							</tr>
+							<tr>
+								<th class="col-sm-2">Payout %:</th>
+								<td class="col-sm-3"><input type="text" disabled name="payout" class="form-control " value=""></td>
+								<th class="col-sm-1"></th>
+								<td class="col-sm-3"></td>
+								<th class="col-sm-1"></th>
+								<th class="col-sm-1"><button type="button" disabled data-addpayout class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></button></th>
+								<th class="col-sm-1"></th>
+							</tr>
+							<tr>
+								<th colspan="7">
+                                                                            <b>Price (%) Left : </b> <span class="reserved" style="font-size : 18px;color : green"></span>
+                                                                </th>
+							</tr>
+							<tr>
+								<th class="col-sm-2"></th>
+								<td class="col-sm-3"><!--button type="button" data-undo class="btn btn-success pull-right">Undo</button--></td>
+								<th class="col-sm-1"></th>
+								<td class="col-sm-3"></td>
+								<th class="col-sm-1"></th>
+								<th class="col-sm-1"><button disabled type="button" data-finish class="btn btn-success pull-right">Finish</button></th>
+								<th class="col-sm-1"></th>
+							</tr>
+						</thead>
+						<tbody class="createprizes">
+							<tr data-title>
+								<th>Place</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button data-aa type="button" class="btn btn-primary">Save changes</button>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</script>

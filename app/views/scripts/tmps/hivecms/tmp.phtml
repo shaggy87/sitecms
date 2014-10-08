@@ -1,0 +1,385 @@
+<script id="modify-addhivecmspartner" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addhivecmspartner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Partner name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="partnername" class="form-control " id="bamount" placeholder="">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<div class="col-sm-6 control-label">
+											<label>
+												<b>Active: </b>
+												<input type="checkbox" value="" name="partnerstatus" >
+											</label>
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-createnewhivecmspartner type="button" class="btn btn-primary">Create partner</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-addhivecmsskin" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addhivecmsskin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                                	<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Skin ID:</label>
+										<div class="col-sm-5">
+											<input type="text" name="skinid" class="form-control" id="bamount" placeholder="">
+										</div>
+									</div>
+									
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Skin name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="skinname" class="form-control " id="bamount" placeholder="">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="langs">Partner:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="partner">
+												<?php foreach ($this->partners as $key => $row):?>
+													<option value="<?php echo $row["partnerid"];?>"><?php echo $row["partner_name"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Languages for skin:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="langs" multiple="">
+												<?php foreach ($this->langs as $key => $row):?>
+													<option value="<?php echo $row["langid"];?>"><?php echo $row["lang"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<div class="col-sm-6 control-label">
+											<label>
+												<b>Active: </b>
+												<input type="checkbox" value="" name="skinstatus" >
+											</label>
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-createnewhivecmsskin type="button" class="btn btn-primary">Create skin</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-edithivecmsskin" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="edithivecmsskin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                                	<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Skin ID:</label>
+										<div class="col-sm-5">
+											<input type="text" name="skinid" class="form-control " id="bamount" placeholder="" disabled="" value="{{StaticData.skinid}}">
+										</div>
+									</div>
+									
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Skin name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="skinname" class="form-control " id="bamount" placeholder="" value="{{StaticData.name}}">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="langs">Partner:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="partner">
+												<?php foreach ($this->partners as $key => $row):?>
+													<option value="<?php echo $row["partnerid"];?>"><?php echo $row["partner_name"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Languages for skin:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="langs" multiple="">
+												<?php foreach ($this->langs as $key => $row):?>
+													<option value="<?php echo $row["langid"];?>"><?php echo $row["lang"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<div class="col-sm-6 control-label">
+											<label>
+												<b>Active: </b>
+												<input type="checkbox" value="" name="skinstatus" >
+											</label>
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-saveskinchanges type="button" class="btn btn-primary">Edit skin</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-addhivecmsuser" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addhivecmsuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="username">User username:</label>
+										<div class="col-sm-5">
+											<input type="text" name="username" class="form-control " id="username" placeholder="">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Partner:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="partner">
+												<option value="-1" selected="selected">All</option>
+												<?php foreach ($this->partners as $key => $row):?>
+													<option value="<?php echo $row["partnerid"];?>"><?php echo $row["partner_name"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Skin:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="skin">
+												<option value="-1" selected="selected">All</option>
+												<?php foreach ($this->skins as $key => $row):?>
+													<option value="<?php echo $row["skinid"];?>"><?php echo $row["name"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="fullname">User Fullname:</label>
+										<div class="col-sm-5">
+											<input type="text" name="fullname" class="form-control " id="fullname" placeholder="">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="password">User Password:</label>
+										<div class="col-sm-5">
+											<input type="text" name="password" class="form-control " id="password" placeholder="">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Role:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="role">
+												<?php foreach ($this->roles as $key => $row):?>
+													<option value="<?php echo $row["roleid"];?>"><?php echo $row["role"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-createnewhivecmsuser type="button" class="btn btn-primary">Create user</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-edithivecmsuser" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="edithivecmsuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="username">User username:</label>
+										<div class="col-sm-5">
+											<input type="text" name="username" class="form-control " id="username" placeholder="" value="{{Data.username}}">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Partner:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="partner">
+												<option value="-1" selected="selected">All</option>
+												<?php foreach ($this->partners as $key => $row):?>
+													<option value="<?php echo $row["partnerid"];?>"><?php echo $row["partner_name"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Skin:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="skin">
+												<option value="-1" selected="selected">All</option>
+												<?php foreach ($this->skins as $key => $row):?>
+													<option value="<?php echo $row["skinid"];?>"><?php echo $row["name"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="fullname">User Fullname:</label>
+										<div class="col-sm-5">
+											<input type="text" name="fullname" class="form-control " id="fullname" placeholder="" value="{{Data.name}}">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Role:</label>
+										<div class="col-sm-5">
+											<select class="form-control" name="role">
+												<?php foreach ($this->roles as $key => $row):?>
+													<option value="<?php echo $row["roleid"];?>"><?php echo $row["role"];?></option>
+												<?php endforeach;?>
+											</select>
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-edithivecmsuserdata type="button" class="btn btn-primary">Edit user</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-addhivecmsrole" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addhivecmsrole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="rolename">Role name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="rolename" class="form-control " id="rolename" placeholder="">
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-createnewhivecmsrole type="button" class="btn btn-primary">Create role</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-addhivecmslanguages" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addhivecmslanguages" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                	
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="lang">Language:</label>
+										<div class="col-sm-5">
+											<input type="text" name="lang" class="form-control " id="lang" placeholder="">
+										</div>
+									</div>
+									
+									<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="short_lang">Short name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="short_lang" class="form-control " id="short_lang" placeholder="">
+										</div>
+									</div>
+									
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-createnewhivecmslanguage type="button" class="btn btn-primary">Add new language</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>

@@ -1,0 +1,151 @@
+<script id="modify-addnewpromotion" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addnewpromotion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Promotion name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="promotionname" class="form-control " id="bamount" placeholder="">
+										</div>
+									</div>
+									<div class="form-group clearfix">
+										<div class="col-sm-6 control-label">
+											<label>
+												<b>Active: </b>
+												<input type="checkbox" value="" name="promaotionactive" >
+											</label>
+										</div>
+									</div>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-createnewpromotion type="button" class="btn btn-primary">Create promotion</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-editpromotion" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="editpromotion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                <div class="modal-body">
+                        			<div class="form-group clearfix">
+										<label class="col-sm-7 control-label" for="bamount">Promotion name:</label>
+										<div class="col-sm-5">
+											<input type="text" name="promotionname" class="form-control " id="bamount" placeholder="" value="{{StaticData.promname}}">
+										</div>
+									</div>
+									<div class="form-group clearfix">
+										<div class="col-sm-6 control-label">
+											<label>
+												<b>Active: </b>
+												<input type="checkbox" value="" name="promaotionactive" {{#StaticData.status}}checked{{/StaticData.status}}>
+											</label>
+										</div>
+									</div>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button data-editcurrentpromotion type="button" class="btn btn-primary">Edit promotion</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>
+
+<script id="modify-addpromotionlanguage" type="text/template">
+        <!-- Modal -->
+        <div class="modal fade" id="addpromotionlanguage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-imgupload">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">{{Title}}</h4>
+                                </div>
+                                
+                                <div class="modal-body">
+                                	<ul class="nav nav-tabs" role="tablist">
+                                		{{#Data}}
+											<li data-lang="{{lang_id}}"><a href="#{{lang_id}}" data-toggle="tab">{{lang}}</a></li>
+										{{/Data}}
+									</ul>
+									<div class="tab-content">
+										{{#Data}}
+	                        				<div class="tab-pane" id="{{lang_id}}">
+												<div class="form-group clearfix">
+													<label class="col-sm-7 control-label" for="promduration">Promotion duration:</label>
+													<div class="col-sm-5">
+														<input type="text" name="promduration" class="form-control " id="promduration" placeholder="" value="{{duration}}">
+													</div>
+													
+												</div>
+												
+												<div class="form-group clearfix">
+													<label class="col-sm-7 control-label" for="promurl">Url:</label>
+													<div class="col-sm-5">
+														<input type="text" name="promurl" class="form-control " id="promurl" placeholder="" value="{{url}}">
+													</div>
+													
+												</div>
+												
+												<div class="form-group clearfix">
+													<div class="col-sm-6 control-label">
+														<label>
+															<b>Active: </b>
+															<input type="checkbox" value="" name="promactive" {{#status}}checked{{/status}}>
+														</label>
+													</div>
+												</div>
+												
+												<div class="form-group clearfix">
+													<form action="upload" method="post" enctype="multipart/form-data" id="MyUploadForm" target="imgUploadFrame" style="display: none;">
+														<input data-uploadbtn style="visibility: hidden" type="file" name="imagefile" accept="image/*" />
+														<input type="hidden" name="uploadimage" value="{{uploadimg}}" />
+														<input type="hidden" name="checked" value="0" />
+														<input type="hidden" name="selectionX1" value="0" />
+														<input type="hidden" name="selectionY1" value="0" />
+														<input type="hidden" name="selectionW" value="0" />
+														<input type="hidden" name="selectionH" value="0" />
+														<input type="hidden" name="wpercentage" value="0" />
+														<input type="hidden" name="imgname" value="" />
+														<input type="hidden" name="imgext" value="" />
+														<input type="hidden" name="promid" value="" />
+														<input type="hidden" name="lang" value="{{lang_id}}" />
+														<iframe id="imgUploadFrame" name="imgUploadFrame" style="width: 0;height: 0;border: 0px solid #fff;"></iframe>
+													</form>
+													<button data-upload type="button" class="btn btn-info">Upload image</button>
+												</div>
+												
+												<div class="form-group clearfix">
+													<img style="width: 874px" data-img src="{{image_name}}" alt="Image preview"/>
+												</div>
+												
+												<div class="form-group clearfix pull-right">
+													<button data-createnewpromotionlanguage type="button" class="btn btn-primary">Save {{lang}} promotion</button>
+												</div>
+											</div>
+										{{/Data}}
+									</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</script>

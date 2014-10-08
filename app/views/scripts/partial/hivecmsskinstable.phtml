@@ -1,0 +1,40 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Skin ID</th>
+			<th>Partner</th>
+			<th>Name</th>
+			<th>Languages</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	
+	
+	<tbody>
+	<?php if(!empty($this->skins)):?>
+		<?php foreach ($this->skins as $row):?>
+			<tr>
+				<td><?php echo $row['skinid'];?></td>
+				<td><?php echo $row['partner_name'];?></td>
+				<td><?php echo $row['name'];?></td>
+				<td><?php echo $row['langs'];?></td>
+				<td><?php echo $row['status'] == 1 ? "Active" : "Not Active";?></td>
+				<td><button data-edithivecmsskin data-partnerid="<?php echo $row['partnerid'];?>" data-status="<?php echo $row['status'];?>" data-name="<?php echo $row['name'];?>" data-skinid="<?php echo $row['skinid'];?>" class="btn btn-success">Edit Skin</button></td>
+			</tr>
+		<?php endforeach;?>
+	<?php else:?>
+		<tr>
+			<td colspan="6">
+				No users for selected params
+			</td>
+		</tr>
+	<?php endif;?>
+	<tr>
+		<td colspan="6">
+			<?php echo $this->render('partial/pagination.phtml');?>
+		</td>
+	</tr>
+
+	</tbody>
+</table>

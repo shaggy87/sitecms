@@ -1,0 +1,54 @@
+<?php 
+$product_categories = Zend_Registry::get('product_categories');
+$skins = Zend_Registry::get('skins');
+$yesno = array(1 => 'Yes', 0 => 'No');
+?>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th><a data-sort="product_id" href="<?php echo $this->ToggleOrder('product_id')?>">Product Id<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="skin" href="<?php echo $this->ToggleOrder('id')?>">Skin<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_title" href="<?php echo $this->ToggleOrder('id')?>">Product Name<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="campaign_id" href="<?php echo $this->ToggleOrder('campaign_id')?>">Campaign Id<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="bonus_euro_amount" href="<?php echo $this->ToggleOrder('bonus_euro_amount')?>">Bonus (EUR)<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_image" href="<?php echo $this->ToggleOrder('product_image')?>">Image<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_price" href="<?php echo $this->ToggleOrder('product_price')?>">FPP Price<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="product_category" href="<?php echo $this->ToggleOrder('product_category')?>">Category<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="video_category" href="<?php echo $this->ToggleOrder('video_category')?>">Video category<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th><a data-sort="published" href="<?php echo $this->ToggleOrder('published')?>">Published<span class="up glyphicon glyphicon-arrow-up"></span><span class="down glyphicon glyphicon-arrow-down"></span></a></th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	
+	
+	<tbody>
+	
+	<?php foreach ($this->data as $row):?>
+		<tr>
+			<td><?php echo $row['product_id']?></td>
+			<td><?php echo $skins[$row['skin']]?></td>
+			<td><a href="<?php echo $this->baseUrl().'/vipshop/editproduct/product_id/'.$row['product_id']?>"><?php echo $row['product_title']?><?php echo !empty($row["featured_video"]) ? " <b>(Featured)</b>" : "";?></a></td>
+			<td><?php echo $row['campaign_id']?></td>
+			<td><?php echo $row['bonus_euro_amount']?></td>
+			<td><?php echo $row['product_image']?></td>
+			<td><?php echo $row['product_price']?></td>
+			<td><?php echo $product_categories[$row['product_category']]?></td>
+			<td><?php echo $row['video_category']?></td>
+			<td><?php echo $yesno[$row['published']]?></td>
+			<td style="white-space: nowrap">
+			<a class="btn btn-xs btn-default btn-info" href="<?php echo $this->baseUrl().'/vipshop/editproduct/product_id/'.$row['product_id']?>">Edit</a> 
+			<a class="btn btn-xs btn-default" href="<?php echo $this->baseUrl().'/vipshop/addproduct/copy_from_id/'.$row['product_id']?>">Copy</a> 
+			<a class="btn btn-xs btn-danger" href="<?php echo $this->baseUrl().'/vipshop/deleteproduct/product_id/'.$row['product_id']?>" onclick="return confirm('Confirm Delete?')">Delete</a>
+			</td>
+	
+		</tr>
+	<?php endforeach;?>
+	<tr>
+		<td colspan="12">
+			<?php echo $this->render('partial/pagination.phtml');?>
+		</td>
+	</tr>
+
+	</tbody>
+</table>

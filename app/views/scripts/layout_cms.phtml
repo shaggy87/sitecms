@@ -1,0 +1,34 @@
+<?php echo $this->render('common/header.phtml');?>
+
+</head>
+<body>
+
+	<?php echo $this->render('common/topmenu.phtml');?>
+
+	<div data-msgholder class="msgholder app-error-container"></div>
+
+	<div style="display: none;" class="" id="loading">			
+		<div class="loader">				
+			<h3>Please wait...</h3>
+			<img src="<?php echo $this->baseUrl();?>/images/loader.gif" alt="Please wait..." class="centerLoader">			
+		</div>		
+	</div>
+
+	<div class="container main">
+	
+		<div class="row">
+		
+			<div class="col-md-12 main-content">
+			
+				<iframe src=""></iframe>
+				
+			</div>
+		
+		</div>
+	
+	</div> <!-- end container -->
+
+<?php echo $this->render('common/end.phtml');?>
+
+
+ 

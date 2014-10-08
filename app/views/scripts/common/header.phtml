@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo $this->sitedata["title"];?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	
+	<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
+	<!--[if lt IE 9]><script src="<?php echo $this->baseUrl()?>/include/html5shiv/dist/html5shiv.js"></script><![endif]-->
+
+	<!-- jQuery -->
+	<script type="text/javascript" src="<?php echo $this->baseUrl()?>/include/jQuery/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl()?>/include/jQuery/jquery-ui-1.8.23.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl()?>/include/jQuery/jquery-ui-1.8.23.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl()?>/js/scripts/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl()?>/js/scripts/jquery.imgareaselect.pack.js"></script>
+	<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $this->baseUrl()?>/css/css/imgareaselect-default.css" />
+	<link rel="stylesheet" media="screen" type="text/css" href="<?php echo $this->baseUrl()?>/include/jQuery/css/ui-lightness/jquery-ui-1.8.23.custom.css" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+	<style>
+		#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+		#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+		#sortable li span { position: absolute; margin-left: -1.3em; }
+	</style>
+	<script>
+		var php_baseUrl = "<?php echo $this->baseUrl();?>";
+		$(document).ready(function(){
+			$('#myTab a').click(function (e) {
+			    e.preventDefault();
+			    $(this).tab('show');
+		    })
+		});
+	</script>
+	
+	<script id="info-message" type="text/template">
+		<div class="alert alert-success fade in">
+		  <button data-dismiss="alert" class="close" type="button">×</button>
+		  <strong>{{Title}}</strong>
+		  <p>{{InfoText}}</p>
+		</div>
+	</script>
+	
+	<script id="error-message" type="text/template">
+		<div class="alert alert-block alert-error fade in">
+			<button data-dismiss="alert" class="close" type="button">×</button>
+			<strong>{{Title}}</strong>
+			<p>{{ErrorText}}</p>
+		</div>
+	</script>
+	
+	<!-- Render phtml templates that holds js templates for current controller if exists-->
+	<?php $controllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();?>
+	<?php echo $this->renderIfExists('tmps/'.$controllerName.'/tmp.phtml')?>
+	
+	<!-- bootstrap -->
+	<script src="<?php echo $this->baseUrl()?>/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl()?>/bootstrap/css/bootstrap.min.css">
+	<script src="<?php echo $this->baseUrl()?>/js/common.js<?php echo '?' . rand(1,10000); // TODO: rand to disable cache?>"></script>
+	<script src="<?php echo $this->baseUrl()?>/js/render.js<?php echo '?' . rand(1,10000); // TODO: rand to disable cache?>"></script>
+	<script src="<?php echo $this->baseUrl()?>/js/parsetable.js<?php echo '?' . rand(1,10000); // TODO: rand to disable cache?>"></script>
+	<script src="<?php echo $this->baseUrl()?>/js/mustache.js<?php echo '?' . rand(1,10000); // TODO: rand to disable cache?>"></script>
+	
+	<!-- Loads only javascript files needed for js templates on current controller -->
+	<?php if($this->CheckFileExists($controllerName.".js")):?>
+		<script src="<?php echo $this->baseUrl()?>/js/tmps/<?php echo $controllerName;?>.js<?php echo '?' . rand(1,10000); // TODO: rand to disable cache?>"></script>
+	<?php endif;?>
+
+	<!-- load standard css -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl()?>/css/ie-fix.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl()?>/css/style.css">

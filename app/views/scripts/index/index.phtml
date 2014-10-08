@@ -1,0 +1,20 @@
+<div data-page>
+	<div>
+		<h1><?php echo $this->sitedata["page"]["title"];?></h1>
+		<div><?php echo $this->sitedata["page"]["short_desc"];?></div>
+		<div><?php echo $this->sitedata["page"]["content"];?></div>
+	</div>
+	<div data-sections>
+		<?php foreach ($this->sitedata["page"]["sections"] as $k => $sections):?>
+			<div data-sectionid>
+				<?php foreach ($sections["articles"] as $k => $article):?>
+					<div data-article>
+						<h2><?php echo $article["title"];?></h2>
+						<img src="<?php echo $article["xref"][0]["path"];?>" alt="<?php echo $article["xref"][0]["title"];?>" />
+						<p><?php echo $article["content"];?></p>
+					</div>
+				<?php endforeach;?>
+			</div>
+		<?php endforeach;?>
+	</div>
+</div>
