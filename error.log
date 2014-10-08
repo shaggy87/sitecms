@@ -30,3 +30,24 @@ This page does not exist / missing ACL entrie?
   'module' => 'default',
 )
 
+2014-10-08 14:46:51 ERR (3): 
+------------------------------------------------------------
+Application error
+
+script 'cms/index.phtml' not found in path (C:/wamp/www/SiteCms/sitecms/app/views\scripts/;js/tmps/;./views\scripts/)
+#0 C:\wamp\www\SiteCms\sitecms\zend\Zend\View\Abstract.php(884): Zend_View_Abstract->_script('cms/index.phtml')
+#1 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Action\Helper\ViewRenderer.php(900): Zend_View_Abstract->render('cms/index.phtml')
+#2 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Action\Helper\ViewRenderer.php(921): Zend_Controller_Action_Helper_ViewRenderer->renderScript('cms/index.phtml', NULL)
+#3 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Action\Helper\ViewRenderer.php(960): Zend_Controller_Action_Helper_ViewRenderer->render()
+#4 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Action\HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#5 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#6 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Dispatcher\Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#7 C:\wamp\www\SiteCms\sitecms\zend\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#8 C:\wamp\www\SiteCms\sitecms\zend\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#9 C:\wamp\www\SiteCms\sitecms\zend\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run()
+#10 C:\wamp\www\SiteCms\sitecms\index.php(41): Zend_Application->run()
+#11 {main}array (
+  'controller' => 'cms',
+  'action' => 'index',
+)
+

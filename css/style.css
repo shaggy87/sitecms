@@ -144,3 +144,11 @@ html.busy, html.busy * {
 [data-article] img{
 	width: 50%;
 }
+
+iframe#site_frame{
+	border: 0 none;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}

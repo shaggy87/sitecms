@@ -18,6 +18,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					'action' => 'index')
 			)
 		);
+		
+		$router->addRoute('cmsbackend', 
+			new Zend_Controller_Router_Route('cms', 
+				array(
+					'controller' => 'cms',
+					'action' => 'index')
+			)
+		);
 	}
 	public function __construct($application)
 	{
