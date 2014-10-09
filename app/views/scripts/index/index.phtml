@@ -6,7 +6,7 @@
 	</div>
 	<div data-sections>
 		<?php foreach ($this->sitedata["page"]["sections"] as $k => $sections):?>
-			<div data-sectionid>
+			<div data-sectionid class="cf" style="position: relative;">
 				<?php foreach ($sections["articles"] as $k => $article):?>
 					<div data-article>
 						<h2><?php echo $article["title"];?></h2>
