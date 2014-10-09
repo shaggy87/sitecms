@@ -21,6 +21,8 @@ if (_) {
 
 	// Initialized views
 	var views = {};
+	
+	var pageChangeFinished = true;
 
 
 	// App events
@@ -30,49 +32,64 @@ if (_) {
 	// initialize App - kitchen application model
 	cms.init_app = function(url) {
 		var cms = this;
+		var $site = $("[data-sitecontainer]");
+		cms.trigger("change.page");
 		
-		$.get( typeof url === "undefined" ? "http://sitecms.intra/" : url, function( data ) {
-			
-			$( "[data-sitecontainer]" ).hide("slow", function(){
-				$( "[data-sitecontainer]" ).html( data );
-				$("[data-sitecontainer]").off("click").off("mouseover").off("mouseout");
-				$("[data-article]").off("mouseover").off("mouseout");
-				$("[data-sitecontainer] a").off("click");
-				$( "[data-sitecontainer]" ).show("slow");
-			});;
-			
-			$("[data-sitecontainer]").on("mouseover", "[data-article]", function(e){
-				$(e.currentTarget).css({"outline": "3px solid #000"});
-				$(e.currentTarget).parent().append('<button style="position: absolute; bottom: 0px; right: 0;" class="btn" data-addarticle><i class="glyphicon glyphicon-search"></i></button>');
-			}).on("mouseout", "[data-article]", function(e){
-				$(e.currentTarget).css({"outline": "none"});
-				$("[data-addarticle]").remove();
-			});
-			
-			$("[data-sitecontainer]").on("click", "a", function(e){
-				var url = $(e.target).attr("href");
-				cms.trigger("init.app", url);
-				return false;
-			});
+		$("a", $site).live("click", function(e){
+			var url = $(e.target).attr("href");
+			cms.trigger("change.page", url);
+			return false;
 		});
+		console.log(4);
+		$("body").bview("PagesSelectDropdown", {});
 	};
 	
-	// App internationalization
-	cms.init_i18n = function(lang, done) {
-		var kcn = this
-		  , done = typeof done === "function" ? done : function(){};
-		  
-		if (kcn.Settings.ActiveLanguage === lang) {
-			done();
-		} else {
-			kcn.Settings.ActiveLanguage = lang;
-			kcn.ajax("/cms/configs/lang-"+lang+".json", {}, function(data){
-				kcn.i18n = data;
-				done();
+	cms.change_page = function(url) {
+		if (pageChangeFinished) {
+			pageChangeFinished = false;
+			$.get( typeof url === "undefined" ? "http://sitecms.intra/" : url, function( data ) {
+				
+				$( "[data-sitecontainer]" ).hide("slow", function(){
+					$( "[data-sitecontainer]" ).html(data);
+					$( "[data-sitecontainer]" ).show("slow", function(){
+						pageChangeFinished = true;
+					});
+				});;
+				
+				$("[data-sitecontainer]").on("mouseover", "[data-article]", function(e){
+					$(e.currentTarget).css({"outline": "3px solid #000"});
+					$(e.currentTarget).parent().append('<button style="position: absolute; bottom: 0px; right: 0;" class="btn" data-addarticle><i class="glyphicon glyphicon-search"></i></button>');
+				}).on("mouseout", "[data-article]", function(e){
+					$(e.currentTarget).css({"outline": "none"});
+					$("[data-addarticle]").remove();
+				});
+				
 			});
+		} else {
+			return false;
 		}
-	};
+	}
+	
+	// Views
+	// -----
 
+	// Adding and removing views and subViews
+	
+	// Add view
+	// XXB 1e 1jquery
+	cms.view_add = function(view, viewName) {
+		if ( typeof views[viewName] === "undefined" ) {
+			views[viewName] = [];
+		}
+		views[viewName].push(view);
+		if (view.isModal_ === true) {
+			this.App.get("modals").push( view );
+		}
+		if (view.drop_ === true) {
+			this.trigger("modal.launch", "ModalBackdrop");
+		}
+	}
+	
 	// Bind all events to namespace
 	_(cms).each(function(func,key){
 		var str = key.split("_").join(".");
