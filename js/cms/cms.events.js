@@ -1,5 +1,49 @@
 var CMS = CMS || {};
+// Templates
+CMS.JST = {};
 
+CMS.template = function(path, func) {
+		var $tpl = $("script[data-template='"+path+"']")
+		  , tpldata = this.JST[path];
+
+		// Caching template data (printed on page)
+		if (typeof tpldata === "undefined") {
+			if ($tpl.length > 0) {
+				tpldata = $tpl.html();
+				tpldata = tpldata.replace(/\\\n/g, "").replace(/\\'/g, "'");
+				this.JST[path] = tpldata;
+			}
+		}
+		
+		if (typeof tpldata !== "undefined") {
+			// template loaded allready
+			if (typeof func !== 'function') {
+				if (typeof func !== 'undefined') {
+					return _.template( tpldata, func );
+				} else {
+					return tpldata;
+				}
+			} else {
+				return func( tpldata );
+			}
+		} else {
+			// load js template (async)
+			$.get(
+				"/js/cms/templates" + '/' + path + '.tpl', //path to template
+				{ t: new Date().getTime() }, //disable browser caching 
+				function(tmpl) {
+					tmpl = tmpl.replace(/\n/g, "");
+					CMS.JST[path] = tmpl;
+					if (typeof func === 'function') {
+						return func(tmpl);
+					} else {
+						return _.template( tmpl, func );
+					}
+				}
+			);
+		}
+	};
+	
 if (_) {
 	_.templateSettings = {
 		interpolate: /\[\[([\s\S]+?)\]\]/g,
@@ -34,14 +78,16 @@ if (_) {
 		var cms = this;
 		var $site = $("[data-sitecontainer]");
 		cms.trigger("change.page");
-		
+		$("body").bview("MainMenu", {});
 		$("a", $site).live("click", function(e){
 			var url = $(e.target).attr("href");
 			cms.trigger("change.page", url);
 			return false;
 		});
-		console.log(4);
-		$("body").bview("PagesSelectDropdown", {});
+		$("[data-sitecontainer]").on("click", "[data-article]", function(){
+			$("body").bview("ModalGeneric", {});
+			findView("ModalGeneric").visible_ = true;
+		});	
 	};
 	
 	cms.change_page = function(url) {
@@ -68,7 +114,14 @@ if (_) {
 		} else {
 			return false;
 		}
-	}
+	};
+	
+	// Helper function to find views
+	var findView = function(name) {
+		if ( typeof views[name] !== "undefined") {
+			return views[ name ][0];
+		}
+	};
 	
 	// Views
 	// -----
@@ -88,7 +141,7 @@ if (_) {
 		if (view.drop_ === true) {
 			this.trigger("modal.launch", "ModalBackdrop");
 		}
-	}
+	};
 	
 	// Bind all events to namespace
 	_(cms).each(function(func,key){

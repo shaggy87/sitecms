@@ -179,3 +179,17 @@ iframe#site_frame{
 .cf {
     *zoom: 1;
 }
+
+.pages{
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	z-index: 1200;
+	width: 200px;
+}
+
+.pages-button{
+	width: 70px;
+	height: 70px;
+	border-radius: 20px;
+}
