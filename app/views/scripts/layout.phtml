@@ -30,5 +30,13 @@
 
 <?php echo $this->render('common/end.phtml');?>
 
-
+<script>
+$(document).ready(function(){
+	if (typeof parent.CMS !== "undefined") {
+		if (typeof parent.CMS.trigger !== "undefined") {
+			parent.CMS.trigger("ready.iframe");
+		}
+	}
+});
+</script>
  

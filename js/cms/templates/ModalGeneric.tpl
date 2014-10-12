@@ -4,7 +4,7 @@
 		<h3 id="myModalLabel" data-draghandle>YouTube video info</h3>
 	</div-->
 	<div class="modal-body">
-		
+		sad
 	</div>
 	
 	<div class="modal-footer">

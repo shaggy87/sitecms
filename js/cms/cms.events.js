@@ -76,44 +76,38 @@ if (_) {
 	// initialize App - kitchen application model
 	cms.init_app = function(url) {
 		var cms = this;
-		var $site = $("[data-sitecontainer]");
+		var site = document.getElementById('siteframe').contentWindow.document;
+		var innerjQuery = document.getElementById('siteframe').contentWindow.$;
 		cms.trigger("change.page");
-		$("body").bview("MainMenu", {});
-		$("a", $site).live("click", function(e){
+		$(".mainmenu-holder").bview("PagesMenu", {});
+		$(".mainmenu-holder").bview("StylesMenu", {});
+		$(".mainmenu-holder").bview("AddMenu", {});
+		$(".mainmenu-holder").bview("SettingsMenu", {});
+	};
+	
+	cms.change_page = function(url) {
+		$(document.getElementById('siteframe')).attr("src", typeof url === "undefined" ? "/" : url);
+	};
+	
+	cms.ready_iframe = function() {
+		var cms = this;
+		$("a", document.getElementById('siteframe').contentWindow.document).live("click", function(e){
 			var url = $(e.target).attr("href");
 			cms.trigger("change.page", url);
 			return false;
 		});
-		$("[data-sitecontainer]").on("click", "[data-article]", function(){
+		
+		$(document.getElementById('siteframe').contentWindow.document).on("click", "[data-article]", function(){
 			$("body").bview("ModalGeneric", {});
-			findView("ModalGeneric").visible_ = true;
 		});	
-	};
-	
-	cms.change_page = function(url) {
-		if (pageChangeFinished) {
-			pageChangeFinished = false;
-			$.get( typeof url === "undefined" ? "http://sitecms.intra/" : url, function( data ) {
-				
-				$( "[data-sitecontainer]" ).hide("slow", function(){
-					$( "[data-sitecontainer]" ).html(data);
-					$( "[data-sitecontainer]" ).show("slow", function(){
-						pageChangeFinished = true;
-					});
-				});;
-				
-				$("[data-sitecontainer]").on("mouseover", "[data-article]", function(e){
-					$(e.currentTarget).css({"outline": "3px solid #000"});
-					$(e.currentTarget).parent().append('<button style="position: absolute; bottom: 0px; right: 0;" class="btn" data-addarticle><i class="glyphicon glyphicon-search"></i></button>');
-				}).on("mouseout", "[data-article]", function(e){
-					$(e.currentTarget).css({"outline": "none"});
-					$("[data-addarticle]").remove();
-				});
-				
-			});
-		} else {
-			return false;
-		}
+		
+		$("[data-sitecontainer]").on("mouseover", "[data-article]", function(e){
+			$(e.currentTarget).css({"outline": "3px solid #000"});
+			$(e.currentTarget).parent().append('<button style="position: absolute; bottom: 0px; right: 0;" class="btn" data-addarticle><i class="glyphicon glyphicon-search"></i></button>');
+		}).on("mouseout", "[data-article]", function(e){
+			$(e.currentTarget).css({"outline": "none"});
+			$("[data-addarticle]").remove();
+		});
 	};
 	
 	// Helper function to find views
@@ -150,7 +144,7 @@ if (_) {
 			try {
 				func.apply(CMS, arguments);
 			} catch (e) {
-				console.log(1);
+				console.log(e);
 			}
 		});
 	});

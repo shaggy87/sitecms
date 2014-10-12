@@ -68,24 +68,73 @@
 		}),
 
 		postRender_: function(){
-			
+			clog(9);
 		},
 		
 		
 	});
 	
 	//Pages - select dropdown
-	views.MainMenu = views.ModalGeneric.extend({
+	views.PagesMenu = views.DropdownGeneric.extend({
 		events: extevents( views.DropdownGeneric, {
-			"click .dropdown-menu a[data-page]":     "gotoPage",
-			"click .page-edit":                      "pageEdit",
-			"click .page-new":                       "pageNew"
+			"click [data-pages]":    "pagesDialog"
 		}),
 
 		postRender_: function(){
 			
 		},
 		
+		pagesDialog: function(){
+			clog(1);
+		}
+		
+	});
+	
+	//Pages - select dropdown
+	views.StylesMenu = views.DropdownGeneric.extend({
+		events: extevents( views.DropdownGeneric, {
+			"click [data-pages]":    "pagesDialog"
+		}),
+
+		postRender_: function(){
+			
+		},
+		
+		pagesDialog: function(){
+			clog(1);
+		}
+		
+	});
+	
+	//Pages - select dropdown
+	views.AddMenu = views.DropdownGeneric.extend({
+		events: extevents( views.DropdownGeneric, {
+			"click [data-pages]":    "pagesDialog"
+		}),
+
+		postRender_: function(){
+			
+		},
+		
+		pagesDialog: function(){
+			clog(1);
+		}
+		
+	});
+	
+	//Pages - select dropdown
+	views.SettingsMenu = views.DropdownGeneric.extend({
+		events: extevents( views.DropdownGeneric, {
+			"click [data-pages]":    "pagesDialog"
+		}),
+
+		postRender_: function(){
+			
+		},
+		
+		pagesDialog: function(){
+			clog(1);
+		}
 		
 	});
 	
